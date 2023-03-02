@@ -12,5 +12,5 @@ export const FeedbackSection = ({ title, children }) => {
 
 FeedbackSection.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.node,
 };
