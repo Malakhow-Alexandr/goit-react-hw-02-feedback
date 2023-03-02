@@ -1,7 +1,13 @@
+import PropTypes from 'prop-types';
+
 export const NotificationMessage = ({ message }) => {
   return (
-    <div>
+    <>
       <p>{message}</p>
-    </div>
+    </>
   );
+};
+
+NotificationMessage.propTypes = {
+  message: PropTypes.string,
 };

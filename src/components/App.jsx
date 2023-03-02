@@ -11,15 +11,8 @@ export class App extends Component {
     bad: 0,
   };
   handleFeedbackIncrement = event => {
-    if (event.target.name === 'good') {
-      this.setState(prevState => ({ good: prevState.good + 1 }));
-    }
-    if (event.target.name === 'neutral') {
-      this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
-    }
-    if (event.target.name === 'bad') {
-      this.setState(prevState => ({ bad: prevState.bad + 1 }));
-    }
+    const { name } = event.currentTarget;
+    this.setState(prevState => ({ [name]: prevState[name] + 1 }));
   };
 
   countTotalFeedback() {
@@ -33,20 +26,28 @@ export class App extends Component {
   }
 
   render() {
+    const { good, neutral, bad } = this.state;
     return (
       <div
         style={{
+          border: '1px solid black',
+          borderRadius: '20px',
+          margin: 'auto',
+          height: 340,
+          width: 280,
           padding: 40,
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
+          backgroundColor: 'teal',
+          alignItems: 'left',
           fontSize: 15,
-          color: '#010101',
+          color: '#fff',
+          boxShadow: 'rgb(0 0 0 / 50%) 0px 2px 7px',
         }}
       >
         <FeedbackSection title="Please leave feedback">
           <FeedbackOption
+            options={['good', 'neutral', 'bad']}
             onClick={this.handleFeedbackIncrement}
           ></FeedbackOption>
         </FeedbackSection>
@@ -54,9 +55,9 @@ export class App extends Component {
         <FeedbackSection title="Statistics">
           {this.countTotalFeedback() > 0 ? (
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             ></Statistics>

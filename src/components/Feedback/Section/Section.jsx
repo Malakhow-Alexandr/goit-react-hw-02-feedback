@@ -1,8 +1,16 @@
+import PropTypes from 'prop-types';
+import { Section, Title } from './Section.styled';
+
 export const FeedbackSection = ({ title, children }) => {
   return (
-    <section>
-      {title && <h2>{title}</h2>}
+    <Section>
+      {title && <Title>{title}</Title>}
       {children}
-    </section>
+    </Section>
   );
+};
+
+FeedbackSection.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.any.isRequired,
 };
